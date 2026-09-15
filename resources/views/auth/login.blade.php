@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
-        @fonts
-
-        <!-- Styles / Scripts -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ isset($title) ? $title : 'Job Tracker' }}</title>
+    @fonts
+    <!-- Styles / Scripts -->
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
             @vite(['resources/css/app.css', 'resources/js/app.js'])
         @else
@@ -17,25 +15,27 @@
             </style>
         @endif
 </head>
-<body>
-    <div class="min-h-screen flex items-center justify-center bg-gray-100">
-        <div class="bg-white p-8 rounded-lg shadow-md">
-            <h1 class="text-2xl font-bold mb-4">Login</h1>
-            <form>
-                <div class="mb-4">
-                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                    <input type="email" id="email" name="email"
-                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                </div>
-                <div class="mb-4">
-                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                    <input type="password" id="password" name="password"
-                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                </div>
-                <button type="submit"
-                    class="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Login</button>
-            </form>
-        </div>
-    </div>
+
+<body class="bg-blue-500">
+
+    <main class="flex min-h-screen flex-col items-center justify-center container mx-auto p-4 text-white">
+        <form class="w-full max-w-md" method="POST" action="{{ route('login') }}">
+            @csrf
+            <h2 class="text-4xl font-bold mb-5 text-center">Job Tracker</h2>
+            <label for="email" class="block mb-2">Email:</label>
+            <input type="email" id="email" name="email" class="w-full p-2 mb-4 text-black rounded" required>
+            @error('name')
+                <div class="text-red-500 mb-4">{{ $message }}</div>                
+            @enderror
+            <label for="password" class="block mb-2">Password:</label>
+            <input type="password" id="password" name="password" class="w-full p-2 mb-4 text-black rounded" required>
+            @error('password')
+                <div class="text-red-500 mb-4">{{ $message }}</div>
+            @enderror
+            <button type="submit"
+                class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</button>
+        </form>
+    </main>
 </body>
+
 </html>

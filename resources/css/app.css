@@ -7,3 +7,25 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+@layer base {
+    html {
+        font-family: var(--font-sans);
+    }
+    button {
+        font-family: var(--font-sans);
+    }
+    a {
+        font-family: var(--font-sans);
+    }
+    input{
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        border: 1px solid #d1d5db;
+    }
+    input:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 1px #2563eb;
+    }
+}
